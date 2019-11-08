@@ -17,6 +17,9 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
 
+app.use('/api/notes', notesRouter)
+app.use('/api/folders', foldersRouter)
+
 app.use(function errorHandler(error, req, res, next) {
   let response
   if (NODE_ENV === 'production') {
@@ -27,7 +30,5 @@ app.use(function errorHandler(error, req, res, next) {
   }
   res.status(500).json(response)
 })
-app.use('/api/notes', notesRouter)
-app.use('/api/folders', foldersRouter)
 
 module.exports = app
